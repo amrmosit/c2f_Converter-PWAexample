@@ -2,6 +2,12 @@
 <html lang="en-US" dir="ltr">
 
 <head>
+    <link rel="manifest" href="manifest.json">
+    <script>
+        if('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/sw.js', { scope: '/' });
+        }
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="shortcut icon" href="favicon.ico" />
@@ -9,12 +15,8 @@
     <link rel="stylesheet" href="bootstrap.min.css">
     <script src="script.js"></script>
     <title>Degree C to F</title>
-    <script>
-        if('serviceWorker' in navigator){
-            navigator.serviceWorker.register('/sw.js', {scope:'/'});
-        }
-    </script>
-    <link rel="manifest" href="/manifest.json">
+
+    
 </head>
 
 <body>
