@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="bootstrap.min.css">
     <script src="script.js"></script>
     <title>Degree C to F</title>
+    <script>
+        if('serviceWorker' in navigator){
+            navigator.serviceWorker.register('/sw.js', {scope:'/'});
+        }
+    </script>
 </head>
 
 <body>
