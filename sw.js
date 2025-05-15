@@ -9,7 +9,7 @@ self.addEventListener('install', event =>{
         await cache.addAll([
             '/', //Add homebage
             '/script.js', //add Java script file
-            '/style.js', // add CSS file
+            '/style.css', // add CSS file
             '/bootstrap.min.css', // add CSS bootstrap file
         ]);
     }));
@@ -18,7 +18,7 @@ self.addEventListener('install', event =>{
 self.addEventListener('fetch', event =>{
     event.respondWith((async()=>{
         // open cache to check for cashed resources
-        const cashe = await caches.open(CACHE_NAME);
+        const cache = await caches.open(CACHE_NAME);
 
         try {
             // Try to fetch the resources from the network
@@ -27,15 +27,15 @@ self.addEventListener('fetch', event =>{
             cache.put (event.request, fetchResponse.clone());
 
             // return the network response to the page
-            return fetch.fetchResponse;
+            return fetchResponse;
         } catch (e) {
             // If the network request fails (e.g., offline), try to fetch from the cache
-            const cashedResponse = await cache.match(event.request);
+            const cachedResponse = await cache.match(event.request);
             // If the resource is found in the cashe, return it
-            if (cashedResponse){
-                return cashedResponse
+            if (cachedResponse){
+                return cachedResponse
             } else {
-                // If the resource is not available in the cahe, return a customer error response
+                // If the resource is not available in the cache, return a customer error response
                 return new Response ('Network error occured and no cache available', {
                     status:408, // Request Timeout status
                     statusText: 'Network error occured'
